@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "438765781619",
+    "project_id": "napanga-bf446",
+    "storage_bucket": "napanga-bf446.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438765781619:android:9db86efe7dc47885fc2006",
+        "android_client_info": {
+          "package_name": "com.napanga.napanga"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "438765781619-t65bl86rehrn19beteeev7dgvf92fq1k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.napanga.napanga",
+            "certificate_hash": "e10039ec7948b2387c6fb68417ab501153c8f360"
+          }
+        },
+        {
+          "client_id": "438765781619-343c0suf9seeeonndv51jesig151j4sq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZ3xXVa53adQ2I5meGYqmtCrM6zXh-Jp8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "438765781619-343c0suf9seeeonndv51jesig151j4sq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
