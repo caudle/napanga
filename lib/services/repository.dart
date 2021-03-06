@@ -11,6 +11,7 @@ import 'package:napanga/services/auth.dart';
 import 'package:napanga/services/providers/network/firestore/user_db.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:uuid/uuid.dart';
 import 'providers/network/firestore/apartment_db.dart';
 import 'providers/network/firestore/house_db.dart';
 
@@ -103,7 +104,7 @@ class Repository {
     return file;
   }
 
-  //upload image
+  //upload dp image
   Future<void> uploadImage(
       {@required File imageFile, @required String uid}) async {
     firebase_storage.Reference reference = firebase_storage
@@ -118,6 +119,18 @@ class Repository {
     });
   }
 
+  //upload home img
+  Future uploadHomeImage(File file, {String home}) async {
+    firebase_storage.Reference reference = firebase_storage
+        .FirebaseStorage.instance
+        .ref()
+        .child('$home')
+        .child('images/${p.basename(file?.path)}');
+    return await reference
+        .putFile(file)
+        .then((value) => value.ref.getDownloadURL());
+  }
+
   //get video
   Future<File> chooseVideo() async {
     ImagePicker picker = ImagePicker();
@@ -129,14 +142,16 @@ class Repository {
   }
 
   //upload vid
-  Future<String> uploadVideo(File file) async {
+  Future uploadVideo(File file, {String home}) async {
+    var uuid = Uuid();
+    String text = uuid.v1();
     firebase_storage.Reference reference = firebase_storage
         .FirebaseStorage.instance
         .ref()
-        .child('user')
-        .child('videos/${p.basename(file?.path)}');
+        .child('$home')
+        .child('videos/$text.mp4');
     return await reference
-        .putFile(file)
+        .putFile(file, firebase_storage.SettableMetadata(contentType: 'mp4'))
         .then((value) => value.ref.getDownloadURL());
   }
 

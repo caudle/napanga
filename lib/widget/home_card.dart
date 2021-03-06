@@ -12,10 +12,12 @@ class HomeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      //height: 200,
+      //width: 250,
       child: Material(
-        elevation: 6,
+        //elevation: 6,
         //margin: EdgeInsets.only(left: 9, right: 1)
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        //shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         child: InkWell(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,7 +40,7 @@ class HomeCard extends StatelessWidget {
               : null,
         ),
       ),
-      margin: EdgeInsets.only(top: 3, bottom: 5, left: 9, right: 1),
+      margin: EdgeInsets.only(top: 3, bottom: 5, left: 0, right: 10),
     );
   }
 }
@@ -49,10 +51,11 @@ Widget _buildImageStack(
   return Stack(
     children: [
       Container(
-        width: 160,
-        height: 109,
+        width: 250,
+        height: 150,
         child: Image.network(
           apartment == null ? house.images[0] : apartment.images[0],
+          fit: BoxFit.fitWidth,
         ),
       ),
       Positioned(
@@ -92,21 +95,39 @@ Widget _buildStarRow({@required Apartment apartment, @required House house}) {
       bottom: 2,
     ),
     child: Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
-          apartment == null ? 'House' : 'Apartment',
-          style: TextStyle(color: Colors.black45),
+        Flexible(
+          fit: FlexFit.loose,
+          flex: 2,
+          child: Text(
+            apartment == null ? 'House' : 'Apartment',
+            style: TextStyle(color: Colors.black45),
+          ),
         ),
-        apartment == null ? SizedBox(width: 80) : SizedBox(width: 59),
-        Icon(
-          Icons.star,
-          color: kPink,
-          size: 14,
+        //apartment == null ? SizedBox(width: 139) : SizedBox(width: 130),
+        Flexible(
+            fit: FlexFit.loose,
+            child: SizedBox(
+              width: apartment == null ? 163 : 135,
+            )),
+        Flexible(
+          flex: 2,
+          fit: FlexFit.loose,
+          child: Icon(
+            Icons.star,
+            color: kPink,
+            size: 14,
+          ),
         ),
-        Text(
-          apartment == null
-              ? house.review.toString()
-              : apartment.review.toString(),
+        Flexible(
+          flex: 5,
+          fit: FlexFit.loose,
+          child: Text(
+            apartment == null
+                ? house.review.toString()
+                : apartment.review.toString(),
+          ),
         ),
       ],
     ),

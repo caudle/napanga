@@ -7,6 +7,7 @@ class House {
   int bedrooms;
   int bathrooms;
   double price;
+  double fee;
   String status;
   bool available;
   int terms;
@@ -27,6 +28,7 @@ class House {
     this.bedrooms,
     this.bathrooms,
     this.price,
+    this.fee,
     this.status,
     this.available,
     this.terms,
@@ -47,6 +49,9 @@ class House {
         bedrooms = houseDocument['bedrooms'],
         bathrooms = houseDocument['bathrooms'],
         price = houseDocument['price'],
+        fee = double.parse(
+          houseDocument['fee'].toString(),
+        ),
         status = houseDocument['status'],
         available = houseDocument['available'],
         terms = houseDocument['terms'],

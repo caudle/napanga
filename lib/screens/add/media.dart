@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napanga/core/constants.dart';
 import 'package:napanga/models/apartment.dart';
 import 'package:napanga/models/house.dart';
+import 'package:napanga/screens/add/location.dart';
 import 'package:napanga/services/blocs/listing/listing_bloc.dart';
 import 'package:napanga/widget/video_widget.dart';
 import 'package:video_player/video_player.dart';
@@ -22,8 +23,7 @@ class _ListingMediaState extends State<ListingMedia> {
   File imageBedTwo;
   File imageOutOne;
   File imageOutTwo;
-  File imageExtraOne;
-  File imageExtraTwo;
+
   File video;
   double aspectRatio = 4;
   double videoHeight = 100;
@@ -218,30 +218,50 @@ class _ListingMediaState extends State<ListingMedia> {
                 ),
                 onPressed: () {
                   if (imageBedOne == null &&
-                      imageExtraOne == null &&
+                      imageOutOne == null &&
                       video == null) {
                     //error textx
                   } else {
+                    //send apt details to nxt page
                     if (widget.apartment != null) {
                       widget.apartment.images = [
                         imageBedOne,
                         imageBedTwo,
-                        imageExtraOne,
-                        imageExtraTwo,
+                        imageOutOne,
+                        imageOutTwo,
                       ];
                       widget.apartment.videos = [video];
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return Container();
+                        return BlocProvider(
+                          create: (context) => ListingBloc(),
+                          child: LocationWidget(
+                            apartment: widget.apartment,
+                            house: null,
+                          ),
+                        );
                       }));
                     }
-                    widget.house.images = [
-                      imageBedOne,
-                      imageBedTwo,
-                      imageExtraOne,
-                      imageExtraTwo,
-                    ];
-                    widget.house.videos = [video];
+                    //send house details to nxt page
+                    else {
+                      widget.house.images = [
+                        imageBedOne,
+                        imageBedTwo,
+                        imageOutOne,
+                        imageOutTwo,
+                      ];
+                      widget.house.videos = [video];
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return BlocProvider(
+                          create: (context) => ListingBloc(),
+                          child: LocationWidget(
+                            apartment: null,
+                            house: widget.house,
+                          ),
+                        );
+                      }));
+                    }
                   }
                 },
                 shape: RoundedRectangleBorder(
@@ -255,4 +275,3 @@ class _ListingMediaState extends State<ListingMedia> {
     );
   }
 }
-

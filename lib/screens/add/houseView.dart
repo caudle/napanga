@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napanga/core/constants.dart';
 import 'package:napanga/models/house.dart';
+import 'package:napanga/services/blocs/listing/listing_bloc.dart';
 
 import 'media.dart';
 
@@ -142,9 +144,12 @@ Widget houseView(
                   house.bedrooms = int.parse(bedroom.value.text);
                   house.bathrooms = int.parse(bathroom.value.text);
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return ListingMedia(
-                      apartment: null,
-                      house: house,
+                    return BlocProvider(
+                      create: (context) => ListingBloc(),
+                      child: ListingMedia(
+                        apartment: null,
+                        house: house,
+                      ),
                     );
                   }));
                 }

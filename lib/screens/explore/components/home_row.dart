@@ -25,8 +25,12 @@ class HomeRow extends StatelessWidget {
               final homeDocs = snapshot.data[0].docs + snapshot.data[1].docs;
               homeDocs.shuffle();
               return homeDocs.length > 0
-                  ? HomeList(
-                      homeDocs: homeDocs,
+                  ? Container(
+                      margin: EdgeInsets.only(left: 18),
+                      height: 240,
+                      child: HomeList(
+                        homeDocs: homeDocs,
+                      ),
                     )
                   : Container(
                       padding: EdgeInsets.only(

@@ -207,7 +207,10 @@ Widget apartmentView(
               ),
               onPressed: () {
                 if (key.currentState.validate()) {
-                  apartment.building = {'name': bname, 'units': units};
+                  apartment.building = {
+                    'name': bname.value.text,
+                    'units': units.value.text
+                  };
                   apartment.number = aptNo.value.text;
                   apartment.bedrooms = int.parse(bedroom.value.text);
                   apartment.bathrooms = int.parse(bathroom.value.text);

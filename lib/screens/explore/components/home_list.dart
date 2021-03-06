@@ -14,6 +14,7 @@ class HomeList extends StatelessWidget {
     return ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: homeDocs.length,
+        shrinkWrap: true,
         itemBuilder: (context, index) {
           Apartment apartment;
           House house;

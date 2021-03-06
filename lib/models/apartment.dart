@@ -9,7 +9,7 @@ class Apartment {
   Map<dynamic, dynamic> building;
   double price;
   String status;
-
+  double fee;
   bool available;
   int terms;
   int likes;
@@ -30,6 +30,7 @@ class Apartment {
     this.bathrooms,
     this.building,
     this.price,
+    this.fee,
     this.status,
     this.available,
     this.terms,
@@ -51,6 +52,9 @@ class Apartment {
         bathrooms = apartmentDocument['bathrooms'],
         building = apartmentDocument['building'],
         price = apartmentDocument['price'],
+        fee = double.parse(
+          apartmentDocument['fee'].toString(),
+        ),
         status = apartmentDocument['status'],
         available = apartmentDocument['available'],
         terms = apartmentDocument['terms'],
