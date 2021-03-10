@@ -1,14 +1,23 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:napanga/core/constants.dart';
 import 'package:napanga/models/apartment.dart';
 import 'package:napanga/models/house.dart';
+import 'package:napanga/services/auth.dart';
+import 'package:napanga/services/repository.dart';
 
-class HomeCard extends StatelessWidget {
+class HomeCard extends StatefulWidget {
   final Apartment apartment;
   final House house;
   final bool tap;
   HomeCard(
       {@required this.apartment, @required this.house, @required this.tap});
+
+  @override
+  _HomeCardState createState() => _HomeCardState();
+}
+
+class _HomeCardState extends State<HomeCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,19 +32,24 @@ class HomeCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //image stack
-              _buildImageStack(apartment: apartment, house: house),
+              _buildImageStack(
+                apartment: widget.apartment,
+                house: widget.house,
+              ),
               //star row
-              _buildStarRow(apartment: apartment, house: house),
+              _buildStarRow(apartment: widget.apartment, house: widget.house),
               //district
-              _buildDistrict(apartment: apartment, house: house),
+              _buildDistrict(apartment: widget.apartment, house: widget.house),
               //home name
-              _buildName(apartment: apartment, house: house),
+              _buildName(apartment: widget.apartment, house: widget.house),
             ],
           ),
-          onTap: tap
+          onTap: widget.tap
               ? () {
-                  Navigator.pushNamed(context, 'detailsScreen',
-                      arguments: apartment == null ? house : apartment);
+                  Navigator.pushNamed(context, '/details', arguments: {
+                    'apartment': widget.apartment,
+                    'house': widget.house
+                  });
                 }
               : null,
         ),
@@ -46,8 +60,11 @@ class HomeCard extends StatelessWidget {
 }
 
 //image stack
-Widget _buildImageStack(
-    {@required Apartment apartment, @required House house}) {
+Widget _buildImageStack({
+  @required Apartment apartment,
+  @required House house,
+}) {
+  final repo = Repository();
   return Stack(
     children: [
       Container(
@@ -71,13 +88,31 @@ Widget _buildImageStack(
                   decoration:
                       BoxDecoration(color: kWhite, shape: BoxShape.circle)),
             ),
-            IconButton(
-              icon: Icon(
-                Icons.favorite_border,
-                color: kPink,
-              ),
-              onPressed: null,
-            ),
+            StreamBuilder<DocumentSnapshot>(
+                stream: repo.checkSaved(
+                    userId: repo.getUserId(),
+                    homeId: house != null ? house.uid : apartment.uid),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return Container();
+                  } else {
+                    return IconButton(
+                        icon: Icon(
+                          snapshot.data.exists
+                              ? Icons.favorite
+                              : Icons.favorite_border,
+                          color: kPink,
+                        ),
+                        onPressed: () {
+                          _onPressed(
+                              userId: repo.getUserId(),
+                              homeId: house != null ? house.uid : apartment.uid,
+                              category: house != null ? 'house' : 'apartment',
+                              saved: snapshot.data.exists,
+                              repo: repo);
+                        });
+                  }
+                }),
           ],
         ),
       )
@@ -156,4 +191,17 @@ Widget _buildName({@required Apartment apartment, @required House house}) {
       // style: TextStyle(color: Colors.black87),
     ),
   );
+}
+
+_onPressed(
+    {String homeId,
+    String userId,
+    String category,
+    bool saved,
+    Repository repo}) {
+  if (saved) {
+    repo.deleteSaved(userId: userId, homeId: homeId);
+  } else {
+    repo.createSaved(user: userId, home: homeId, category: category);
+  }
 }

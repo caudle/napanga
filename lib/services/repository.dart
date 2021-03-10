@@ -36,14 +36,19 @@ class Repository {
     return await _userDatabase.getCurrentUser();
   }
 
+  //get user id
+  String getUserId() {
+    return _authService.getCurrentUser().uid;
+  }
+
   //user stream
   Stream<UserModel> getCurrentUserStream() {
     return _userDatabase.getCurrentUserStream();
   }
 
   ////get user
-  Future<UserModel> getUser(String uid) async {
-    return await _userDatabase.getUser(uid);
+  Stream<UserModel> getUser(String uid) {
+    return _userDatabase.getUser(uid);
   }
 
   //create apartment
@@ -82,6 +87,14 @@ class Repository {
     return CombineLatestStream.combine2<QuerySnapshot, QuerySnapshot,
             List<QuerySnapshot>>(
         _apartmentDatabase.getCity(), _houseDatabase.getCity(), combiner);
+  }
+
+  //get user homes
+  Stream<List<QuerySnapshot>> getUserHomes({@required String userId}) {
+    List<QuerySnapshot> combiner(QuerySnapshot a, QuerySnapshot b) => [a, b];
+    return CombineLatestStream.combine2<QuerySnapshot, QuerySnapshot,
+            List<QuerySnapshot>>(_apartmentDatabase.getUserApts(userId),
+        _houseDatabase.getUserHouses(userId), combiner);
   }
 
   //get image
@@ -168,5 +181,45 @@ class Repository {
   //update acc type
   Future<void> updateType(String uid, String type) async {
     return _userDatabase.updateType(uid, type);
+  }
+
+  //get reviews
+  Stream<QuerySnapshot> getAptReviews(String uid) {
+    return _apartmentDatabase.getReviews(uid);
+  }
+
+  Stream<QuerySnapshot> getHouseReviews(String uid) {
+    return _houseDatabase.getReviews(uid);
+  }
+
+  //create saved
+  Future<void> createSaved({String user, String home, String category}) {
+    return _userDatabase.createSaved(
+        user: user, home: home, category: category);
+  }
+
+  //get saved
+  Stream<QuerySnapshot> getSaved(String user) {
+    return _userDatabase.getSaved(user);
+  }
+
+  //get apt
+  Stream<DocumentSnapshot> getApt(String uid) {
+    return _apartmentDatabase.getApt(uid);
+  }
+
+  Stream<DocumentSnapshot> getHouse(String uid) {
+    return _houseDatabase.getHouse(uid);
+  }
+
+  //check saved
+  Stream<DocumentSnapshot> checkSaved(
+      {@required String userId, @required String homeId}) {
+    return _userDatabase.checkSaved(userId: userId, homeId: homeId);
+  }
+
+  //delete saved
+  Future<void> deleteSaved({@required String userId, @required String homeId}) {
+    return _userDatabase.deleteSaved(userId: userId, homeId: homeId);
   }
 }

@@ -13,6 +13,7 @@ class Apartment {
   bool available;
   int terms;
   int likes;
+  int views;
   Map<dynamic, dynamic> category;
   Map<dynamic, dynamic> location;
   double review;
@@ -32,6 +33,7 @@ class Apartment {
     this.price,
     this.fee,
     this.status,
+    this.views,
     this.available,
     this.terms,
     this.likes,
@@ -59,6 +61,7 @@ class Apartment {
         available = apartmentDocument['available'],
         terms = apartmentDocument['terms'],
         likes = apartmentDocument['likes'],
+        views = apartmentDocument['views'],
         category = apartmentDocument['category'],
         location = apartmentDocument['location'],
         review = apartmentDocument['review'],

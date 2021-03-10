@@ -12,6 +12,7 @@ class House {
   bool available;
   int terms;
   int likes;
+  int views;
   Map<dynamic, dynamic> category;
   Map<dynamic, dynamic> location;
   double review;
@@ -30,6 +31,7 @@ class House {
     this.price,
     this.fee,
     this.status,
+    this.views,
     this.available,
     this.terms,
     this.likes,
@@ -56,6 +58,7 @@ class House {
         available = houseDocument['available'],
         terms = houseDocument['terms'],
         likes = houseDocument['likes'],
+        views = houseDocument['views'],
         category = houseDocument['category'],
         location = houseDocument['location'],
         review = houseDocument['review'],

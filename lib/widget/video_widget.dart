@@ -1,10 +1,16 @@
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
+import 'package:napanga/core/constants.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoWidget extends StatefulWidget {
   final VideoPlayerController videoPlayerController;
-  VideoWidget({@required this.videoPlayerController});
+  final bool isLooping;
+  final bool isColor;
+  VideoWidget(
+      {@required this.videoPlayerController,
+      this.isLooping = false,
+      this.isColor = false});
   @override
   _VideoWidgetState createState() => _VideoWidgetState();
 }
@@ -29,6 +35,14 @@ class _VideoWidgetState extends State<VideoWidget> {
     await widget.videoPlayerController.initialize();
     _chewieController = ChewieController(
       videoPlayerController: widget.videoPlayerController,
+      looping: widget.isLooping,
+      materialProgressColors: widget.isColor
+          ? ChewieProgressColors(
+              playedColor: kGreen,
+              bufferedColor: kGreen,
+              handleColor: kGreen,
+              backgroundColor: kGreen)
+          : ChewieProgressColors(),
     );
     setState(() {});
   }

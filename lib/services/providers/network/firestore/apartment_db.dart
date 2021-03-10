@@ -55,4 +55,14 @@ class ApartmentDatabase {
   Stream<QuerySnapshot> getUserApts(String uid) {
     return _collectionReference.where('hostId', isEqualTo: uid).snapshots();
   }
+
+  //calculate review
+  Stream<QuerySnapshot> getReviews(String uid) {
+    return _collectionReference.doc(uid).collection('reviews').snapshots();
+  }
+
+  //get apt
+  Stream<DocumentSnapshot> getApt(String uid) {
+    return _collectionReference.doc(uid).snapshots();
+  }
 }
