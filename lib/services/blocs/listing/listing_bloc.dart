@@ -23,6 +23,7 @@ class ListingBloc extends Bloc<ListingEvent, ListingState> {
     // TODO: implement mapEventToState
   }
 
+  Stream<UserModel> getUser(String uid) => _repository.getUser(uid);
   Stream<UserModel> get getCurrentUserStream =>
       _repository.getCurrentUserStream();
   Future<UserModel> get getCurrentUser => _repository.getCurrentUser();

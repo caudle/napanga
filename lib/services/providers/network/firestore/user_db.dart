@@ -48,12 +48,11 @@ class UserDatabase {
   }
 
   //get user
-  Future<UserModel> getUser(String uid) async {
-    DocumentSnapshot documentSnapshot = await userCollection.doc(uid).get();
-    UserModel user = documentSnapshot != null
-        ? UserModel.fromMap(documentSnapshot.data())
-        : null;
-    return user;
+  Stream<UserModel> getUser(String uid) {
+    return userCollection
+        .doc(uid)
+        ?.snapshots()
+        ?.map((doc) => UserModel.fromMap(doc.data()));
   }
 
   //update dp
@@ -64,5 +63,33 @@ class UserDatabase {
   //update acc type
   Future<void> updateType(String uid, String type) async {
     return await userCollection.doc(uid).update({'type': type});
+  }
+
+  //create saved
+  Future<void> createSaved({String user, String home, String category}) {
+    return userCollection
+        .doc(user)
+        .collection('saved')
+        .doc(home)
+        .set({'user': user, 'home': home, 'category': category});
+  }
+
+  //get saved
+  Stream<QuerySnapshot> getSaved(String user) {
+    return userCollection.doc(user).collection('saved').snapshots();
+  }
+
+  //check saved
+  Stream<DocumentSnapshot> checkSaved({String userId, String homeId}) {
+    return userCollection
+        .doc(userId)
+        .collection('saved')
+        .doc(homeId)
+        .snapshots();
+  }
+
+  //delete saved
+  Future<void> deleteSaved({String userId, String homeId}) {
+    return userCollection.doc(userId).collection('saved').doc(homeId).delete();
   }
 }

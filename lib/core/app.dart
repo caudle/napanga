@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napanga/core/theme.dart';
 import 'package:napanga/models/user.dart';
+import 'package:napanga/screens/details/details.dart';
 import 'package:napanga/screens/explore/explore.dart';
 import 'package:napanga/screens/listing/listing.dart';
 import 'package:napanga/screens/logIn/log_in.dart';
+import 'package:napanga/screens/saved/saved.dart';
 import 'package:napanga/screens/signUp/sign_up.dart';
+import 'package:napanga/screens/stats/stats.dart';
 import 'package:napanga/services/blocs/explore/explore_bloc.dart';
 import 'package:napanga/services/blocs/listing/listing_bloc.dart';
 import 'package:napanga/services/blocs/login/login_bloc.dart';
@@ -54,6 +57,21 @@ Route _generateRoute(RouteSettings settings) {
           create: (context) => ListingBloc(),
           child: Listing(),
         );
+      });
+    case '/details':
+      return MaterialPageRoute(builder: (context) {
+        Map<String, dynamic> args = settings.arguments;
+        return BlocProvider(
+            create: (context) => ExploreBloc(),
+            child: Details(apartment: args['apartment'], house: args['house']));
+      });
+    case '/saved':
+      return MaterialPageRoute(builder: (context) {
+        return Saved();
+      });
+    case '/stats':
+      return MaterialPageRoute(builder: (context) {
+        return Stats();
       });
     default:
       return _errorRoute();

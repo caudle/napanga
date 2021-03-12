@@ -25,6 +25,11 @@ class ExploreBloc extends Bloc<ExploreEvent, ExploreState> {
   Future<UserModel> get getCurrentUser => _repository.getCurrentUser();
   Stream<UserModel> get getCurrentUserStream =>
       _repository.getCurrentUserStream();
+  Stream<UserModel> getUser(String uid) => _repository.getUser(uid);
+  Stream<QuerySnapshot> getAptReviews(String uid) =>
+      _repository.getAptReviews(uid);
+  Stream<QuerySnapshot> getHouseReviews(String uid) =>
+      _repository.getHouseReviews(uid);
 
   Future<File> chooseImage() async {
     try {
