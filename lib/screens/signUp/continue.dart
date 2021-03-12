@@ -159,8 +159,7 @@ Widget _buildsignupButton({@required SignupBloc signupBloc}) {
     height: 83,
     width: 280,
     padding: const EdgeInsets.only(top: 20, bottom: 6),
-    child: Theme(
-      data: ThemeData(buttonTheme: kRedButtonData),
+  
       child: StreamBuilder<bool>(
           stream: signupBloc.signupStream,
           builder: (context, snapshot) {
@@ -175,6 +174,6 @@ Widget _buildsignupButton({@required SignupBloc signupBloc}) {
                     ? () => signupBloc.add(SignupButtonEvent())
                     : null);
           }),
-    ),
+    
   );
 }

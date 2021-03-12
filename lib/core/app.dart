@@ -19,7 +19,7 @@ class NapangaApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: buildTheme(),
+      theme: lightTheme(context),
       debugShowCheckedModeBanner: false,
       initialRoute: userModel == null ? 'login' : '/',
       onGenerateRoute: _generateRoute,

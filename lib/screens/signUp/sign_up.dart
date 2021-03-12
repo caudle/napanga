@@ -233,8 +233,7 @@ Widget _buildContinueButton(
     height: 83,
     width: 280,
     padding: const EdgeInsets.only(top: 20, bottom: 6),
-    child: Theme(
-      data: ThemeData(buttonTheme: kRedButtonData),
+ 
       child: StreamBuilder<bool>(
           stream: continueStream,
           builder: (context, snapshot) {
@@ -249,7 +248,7 @@ Widget _buildContinueButton(
                     ? () => signupBloc.add(ContinueButtonEvent())
                     : null);
           }),
-    ),
+  
   );
 }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napanga/core/constants.dart';
+import 'package:napanga/core/theme.dart';
 import 'package:napanga/screens/explore/components/home_row.dart';
 import 'package:napanga/services/blocs/explore/explore_bloc.dart';
 import 'package:napanga/widget/custom_drawer.dart';
