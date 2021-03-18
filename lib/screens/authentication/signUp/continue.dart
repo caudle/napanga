@@ -39,7 +39,10 @@ Widget buildContinue({
               if (snapshot.hasData) {
                 signupBloc.usernameValue = snapshot.data;
               }
-              return TextField(
+              return Material(
+                borderRadius:BorderRadius.circular(6.0),
+                elevation: 5.00,
+              child:TextField(
                 onChanged: signupBloc.usernameSink,
                 decoration: InputDecoration(
                   errorText: snapshot.error,
@@ -48,7 +51,7 @@ Widget buildContinue({
                     Icons.perm_identity,
                   ),
                 ),
-              );
+              ),);
             }),
       ),
 
@@ -61,7 +64,10 @@ Widget buildContinue({
               if (snapshot.hasData) {
                 signupBloc.passwordValue = snapshot.data;
               }
-              return TextField(
+              return Material(
+                borderRadius:BorderRadius.circular(6.0),
+                elevation: 5.00,
+              child: TextField(
                 onChanged: signupBloc.password1Sink,
                 obscureText: true,
                 decoration: InputDecoration(
@@ -74,7 +80,7 @@ Widget buildContinue({
                   ),
                 ),
 
-              );
+              ),);
             }),
       ),
 
@@ -85,7 +91,10 @@ Widget buildContinue({
         child: StreamBuilder<String>(
             stream: signupBloc.password2,
             builder: (context, snapshot) {
-              return TextField(
+              return  Material(
+                borderRadius:BorderRadius.circular(6.0),
+                elevation: 5.00,
+              child:TextField(
                 onChanged: signupBloc.password2Sink,
                 obscureText: true,
                 decoration: InputDecoration(
@@ -96,7 +105,7 @@ Widget buildContinue({
                     Icons.enhanced_encryption,
                   ),
                 ),
-              );
+              ),);
             }),
       ),
 
@@ -113,7 +122,7 @@ Widget buildContinue({
             IconButton(
                 icon: Icon(
                   Icons.arrow_back,
-                  color: kGreen,
+                
                 ),
                 onPressed: () {
                   signupBloc.add(BackEvent());
@@ -130,15 +139,14 @@ Widget buildContinue({
 
 Widget _buildsignupButton({@required SignupBloc signupBloc}) {
   return Container(
-    height: 83,
-    width: 280,
+      height: 75.0,
+      width: 335,
     padding: const EdgeInsets.only(top: 20, bottom: 6),
   
       child: StreamBuilder<bool>(
           stream: signupBloc.signupStream,
           builder: (context, snapshot) {
             return RaisedButton(
-                disabledColor: Colors.grey[300],
                 elevation: 6.0,
                 child: Text(
                   'sign up',
