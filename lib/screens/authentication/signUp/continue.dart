@@ -44,20 +44,10 @@ Widget buildContinue({
                 decoration: InputDecoration(
                   errorText: snapshot.error,
                   labelText: 'username',
-                  labelStyle: TextStyle(color: kGreen),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: kGreen),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
                   prefixIcon: Icon(
                     Icons.perm_identity,
-                    color: kGreen,
                   ),
                 ),
-                cursorColor: kGreen,
               );
             }),
       ),
@@ -77,20 +67,13 @@ Widget buildContinue({
                 decoration: InputDecoration(
                   errorText: snapshot.error,
                   labelText: 'password',
-                  labelStyle: TextStyle(color: kGreen),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: kGreen),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+                 
                   prefixIcon: Icon(
                     Icons.enhanced_encryption,
-                    color: kGreen,
+               
                   ),
                 ),
-                cursorColor: kGreen,
+
               );
             }),
       ),
@@ -108,20 +91,11 @@ Widget buildContinue({
                 decoration: InputDecoration(
                   errorText: snapshot.error,
                   labelText: 'confirm password',
-                  labelStyle: TextStyle(color: kGreen),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: kGreen),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+               
                   prefixIcon: Icon(
                     Icons.enhanced_encryption,
-                    color: kGreen,
                   ),
                 ),
-                cursorColor: kGreen,
               );
             }),
       ),

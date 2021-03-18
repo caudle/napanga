@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:napanga/core/constants.dart';
+import 'package:napanga/core/theme.dart';
+import 'package:napanga/screens/authentication/core/social_icon.dart';
 import 'package:napanga/services/blocs/login/login_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napanga/widget/loading_indicator.dart';
@@ -109,21 +110,20 @@ Widget _buildInitial({
                 loginBloc.emailValue = snapshot.data;
               }
               return Material(
-                elevation: 20.0,
+                borderRadius:BorderRadius.circular(6.0),
+                elevation: 5.00,
                 child: TextField(
                 controller: emailController,
                 onChanged: loginBloc.emailSink,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                  errorText: snapshot.error,
+                  //errorText: snapshot.error,
                   labelText: 'Email',
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(6.3),
-                  ),
-                
                   prefixIcon: Icon(
-                    Icons.email,
+                    Icons.email, 
                   ),
+
+                 
                 ),
                
               )
@@ -140,25 +140,25 @@ Widget _buildInitial({
               if (snapshot.hasData) {
                 loginBloc.passwordValue = snapshot.data;
               }
-              return TextField(
+              return Material(
+                borderRadius:BorderRadius.circular(6.0),
+                elevation: 5.00,
+               
+                child: TextField(
                 
                 controller: passwordController,
                 onChanged: loginBloc.passwordSink,
                 obscureText: true,
                 decoration: InputDecoration(
-                  errorText: snapshot.error,
-                  labelText: 'password',
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(6.3),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(6.3),
-                  ),
+                  //errorText: snapshot.error,
+                  labelText: 'Password',
                   prefixIcon: Icon(
                     Icons.enhanced_encryption,
                   ),
                 ),
+
                
+              ),
               );
             }),
       ),
@@ -167,15 +167,13 @@ Widget _buildInitial({
           stream: loginBloc.login,
           builder: (context, snapshot) {
             return Container(
-                height: 83,
+                height: 75.0,
                 width: 335,
                 padding: const EdgeInsets.only(top: 20, bottom: 4),
                 child: RaisedButton(
-                    
                     elevation: 6,
-                    child: Text(
-                      'Log in',
-               
+                    child: const Text(
+                      'Log in',style:TextStyle(color: AppColor.dPrimaryTextColor,),
                     ),
                     onPressed: snapshot.hasData
                         ? () => loginBloc.add(LoginButton())
@@ -184,18 +182,23 @@ Widget _buildInitial({
                 );
 
           }),
-      errorMessage != null
-          ? Padding(
-              padding: EdgeInsets.symmetric(horizontal: 40, vertical: 5),
-              child: Text(
-                errorMessage,
-               
-              ),
-            )
-          : Container(),
-          Container(),
 
-      _buildSignup(context: context),
+          Container(
+            margin: EdgeInsets.only(
+              top:35,
+            ),
+            child: Text(
+              '-or connect with social media-'
+            ),
+          ),
+          
+          Container(
+            child:buildSocialLoginRow(context), 
+          ),
+        
+         _buildSignup(context: context),
+            
+          
     ],
   );
 }
@@ -204,25 +207,22 @@ Widget _buildInitial({
 Widget _buildSignup({
   @required BuildContext context,
 }) {
-  return Padding(
-    padding: const EdgeInsets.only(
-      left: 40,
-      top: 10,
-      bottom: 10,
-    ),
+  return Align(
+    alignment:FractionalOffset.bottomCenter,
     child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
-          "Not a member?",
-          style: Theme.of(context).textTheme.bodyText1,
+          "Don't have an account ?",
+       
         ),
         SizedBox(
           width: 10,
         ),
         GestureDetector(
           child: Text("Sign up",
-              style: Theme.of(context).textTheme.bodyText1.copyWith(
-                  fontWeight: FontWeight.bold, fontSize: 15,)),
+              ),
           onTap: () {
             Navigator.pushReplacementNamed(context, 'signup');
           },

@@ -7,6 +7,7 @@ class AppColor{
  static const dHoverColor = const Color(0xFF22303C);
  static const dPrimaryTextColor = const Color(0xFFFFFFFF);
 static const dSecondaryTextColor = const Color(0xFF8899a6);
+static const blueMain = const Color(0xFF42526C);
  static const kPink = const Color(0xFFFC5185);
  static const btonColor = const Color(0xFF1DB38C);
 //light theme
@@ -36,22 +37,58 @@ ThemeData lightTheme(BuildContext context){
 
     iconTheme: IconThemeData(color:AppColor.lightSecondaryTextColor,size: 20.0),
     hintColor: AppColor.lightSecondaryTextColor,
-    disabledColor: AppColor.lightPrimaryTextColor,
-    highlightColor:AppColor.btonColor ,
-    hoverColor: AppColor.btonColor,
-    focusColor: AppColor.btonColor,
+    disabledColor: AppColor.blueMain,
+    highlightColor: AppColor.blueMain,
+    accentTextTheme: TextTheme(
+      button: TextStyle(color: AppColor.dPrimaryTextColor,
+      ),
+    ),
+    textButtonTheme: TextButtonThemeData(
+     
+    ),
+    hoverColor:  AppColor.blueMain,
+    focusColor:  AppColor.blueMain,
+    accentColor: AppColor.dPrimaryTextColor,
+    primaryColor: AppColor.dHoverColor,
     primaryIconTheme:IconThemeData(color:AppColor.dBackgroundColor),
+    buttonTheme: ButtonThemeData(
+      buttonColor: AppColor.blueMain,
+      textTheme: ButtonTextTheme.accent,
+      disabledColor: AppColor.dSecondaryTextColor,
+      shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0),)
+      
+    ),
     inputDecorationTheme: InputDecorationTheme(
-    fillColor: AppColor.dSecondaryTextColor,
+    fillColor: AppColor.dPrimaryTextColor,
     filled: true,
-    border: InputBorder.none,
-    focusedBorder: InputBorder.none,
-    enabledBorder: InputBorder.none,
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(6.0),
+      borderSide: const BorderSide(color: AppColor.blueMain,width: 0.5),
+    ),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(6.0),
+      borderSide: const BorderSide(color: AppColor.blueMain,width: 0.5),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(6.0),
+      borderSide: const BorderSide(color: AppColor.blueMain,width: 0.5),
+
+    ),
+
+  
     errorBorder: InputBorder.none,
-    disabledBorder: InputBorder.none,  
+    disabledBorder:OutlineInputBorder(
+      borderRadius: BorderRadius.circular(6.0),
+      borderSide: const BorderSide(color: AppColor.blueMain,width: 0.5),
+
+    ),
+    isDense: true,
+    contentPadding: EdgeInsets.all(18.0)
     ),
     
     appBarTheme: AppBarTheme(
+      elevation: 5.0,
+      color: AppColor.dPrimaryTextColor,
       
     ),
   );
