@@ -39,26 +39,19 @@ Widget buildContinue({
               if (snapshot.hasData) {
                 signupBloc.usernameValue = snapshot.data;
               }
-              return TextField(
+              return Material(
+                borderRadius:BorderRadius.circular(6.0),
+                elevation: 5.00,
+              child:TextField(
                 onChanged: signupBloc.usernameSink,
                 decoration: InputDecoration(
                   errorText: snapshot.error,
                   labelText: 'username',
-                  labelStyle: TextStyle(color: kGreen),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: kGreen),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
                   prefixIcon: Icon(
                     Icons.perm_identity,
-                    color: kGreen,
                   ),
                 ),
-                cursorColor: kGreen,
-              );
+              ),);
             }),
       ),
 
@@ -71,27 +64,23 @@ Widget buildContinue({
               if (snapshot.hasData) {
                 signupBloc.passwordValue = snapshot.data;
               }
-              return TextField(
+              return Material(
+                borderRadius:BorderRadius.circular(6.0),
+                elevation: 5.00,
+              child: TextField(
                 onChanged: signupBloc.password1Sink,
                 obscureText: true,
                 decoration: InputDecoration(
                   errorText: snapshot.error,
                   labelText: 'password',
-                  labelStyle: TextStyle(color: kGreen),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: kGreen),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+                 
                   prefixIcon: Icon(
                     Icons.enhanced_encryption,
-                    color: kGreen,
+               
                   ),
                 ),
-                cursorColor: kGreen,
-              );
+
+              ),);
             }),
       ),
 
@@ -102,27 +91,21 @@ Widget buildContinue({
         child: StreamBuilder<String>(
             stream: signupBloc.password2,
             builder: (context, snapshot) {
-              return TextField(
+              return  Material(
+                borderRadius:BorderRadius.circular(6.0),
+                elevation: 5.00,
+              child:TextField(
                 onChanged: signupBloc.password2Sink,
                 obscureText: true,
                 decoration: InputDecoration(
                   errorText: snapshot.error,
                   labelText: 'confirm password',
-                  labelStyle: TextStyle(color: kGreen),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: kGreen),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+               
                   prefixIcon: Icon(
                     Icons.enhanced_encryption,
-                    color: kGreen,
                   ),
                 ),
-                cursorColor: kGreen,
-              );
+              ),);
             }),
       ),
 
@@ -139,7 +122,7 @@ Widget buildContinue({
             IconButton(
                 icon: Icon(
                   Icons.arrow_back,
-                  color: kGreen,
+                
                 ),
                 onPressed: () {
                   signupBloc.add(BackEvent());
@@ -156,16 +139,14 @@ Widget buildContinue({
 
 Widget _buildsignupButton({@required SignupBloc signupBloc}) {
   return Container(
-    height: 83,
-    width: 280,
+      height: 75.0,
+      width: 335,
     padding: const EdgeInsets.only(top: 20, bottom: 6),
-    child: Theme(
-      data: ThemeData(buttonTheme: kRedButtonData),
+  
       child: StreamBuilder<bool>(
           stream: signupBloc.signupStream,
           builder: (context, snapshot) {
             return RaisedButton(
-                disabledColor: Colors.grey[300],
                 elevation: 6.0,
                 child: Text(
                   'sign up',
@@ -175,6 +156,6 @@ Widget _buildsignupButton({@required SignupBloc signupBloc}) {
                     ? () => signupBloc.add(SignupButtonEvent())
                     : null);
           }),
-    ),
+    
   );
 }

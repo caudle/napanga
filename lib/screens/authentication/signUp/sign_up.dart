@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napanga/core/constants.dart';
-import 'package:napanga/screens/signUp/continue.dart';
+import 'package:napanga/screens/authentication/signUp/continue.dart';
 import 'package:napanga/services/blocs/signup/signup_bloc.dart';
 import 'package:napanga/widget/loading_indicator.dart';
 
@@ -87,120 +87,109 @@ Widget _buildInitial({
   return Column(
     children: [
       //napanga text
-      Container(
+       Container(
         child: Text(
           'napanga',
-          style: Theme.of(context).textTheme.headline5.copyWith(fontSize: 30),
+          style: Theme.of(context).textTheme.headline6.copyWith(fontSize: 40),
         ),
         alignment: Alignment.topCenter,
-        padding: EdgeInsets.only(top: 100, bottom: 50),
+        padding: EdgeInsets.only(top: 80, bottom: 20),
       ),
       //sign up text
       Container(
         child: Text(
-          'Sign up',
+          'Sign up into our App',
           style: Theme.of(context).textTheme.bodyText1.copyWith(fontSize: 18),
         ),
         alignment: Alignment.topLeft,
-        padding: EdgeInsets.only(top: 10, left: 40),
+         padding: EdgeInsets.only(top: 90, left: 40,bottom: 30),
       ),
       //name field
       Padding(
-        padding: const EdgeInsets.only(top: 20, right: 40, left: 40),
+        padding: const EdgeInsets.only(top: 30, right: 40, left: 40),
         child: StreamBuilder<String>(
             stream: signupBloc.name,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 signupBloc.nameValue = snapshot.data;
               }
-              return TextField(
+              return Material(
+                borderRadius:BorderRadius.circular(6.0),
+                elevation: 5.00,
+              child:TextField(
                 controller: nameController,
                 onChanged: signupBloc.nameSink,
                 decoration: InputDecoration(
                   errorText: snapshot.error,
                   labelText: 'full name',
-                  labelStyle: TextStyle(color: kGreen),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: kGreen),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+              
+                 
                   prefixIcon: Icon(
                     Icons.perm_identity,
-                    color: kGreen,
+        
                   ),
                 ),
-                cursorColor: kGreen,
-              );
+          
+              ),);
             }),
       ),
 
       //phone field
       Padding(
-        padding: const EdgeInsets.only(top: 8, right: 40, left: 40),
+        padding: const EdgeInsets.only(top: 30, right: 40, left: 40),
         child: StreamBuilder<String>(
             stream: signupBloc.phone,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 signupBloc.phoneValue = snapshot.data;
               }
-              return TextField(
+              return Material(
+                borderRadius:BorderRadius.circular(6.0),
+                elevation: 5.00,
+               child:TextField(
                 controller: phoneController,
                 onChanged: signupBloc.phoneSink,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   errorText: snapshot.error,
                   labelText: 'phone number',
-                  labelStyle: TextStyle(color: kGreen),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: kGreen),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
                   prefixIcon: Icon(
                     Icons.phone,
-                    color: kGreen,
+                  
                   ),
                 ),
                 cursorColor: kGreen,
-              );
+              ),);
             }),
       ),
 
       //email field
       Padding(
-        padding: const EdgeInsets.only(top: 8, right: 40, left: 40),
+        padding: const EdgeInsets.only(top: 30, right: 40, left: 40),
         child: StreamBuilder<String>(
             stream: signupBloc.email,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 signupBloc.emailValue = snapshot.data;
               }
-              return TextField(
+              return Material(
+                borderRadius:BorderRadius.circular(6.0),
+                elevation: 5.00,
+                child: TextField(
                 controller: emailController,
-                onChanged: signupBloc.emailSink,
+                 onChanged: signupBloc.emailSink,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                  errorText: snapshot.error,
+                errorText: snapshot.error,
                   labelText: 'Email',
-                  labelStyle: TextStyle(color: kGreen),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: kGreen),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
                   prefixIcon: Icon(
-                    Icons.email,
-                    color: kGreen,
+                    Icons.email, 
                   ),
+
+                 
                 ),
-                cursorColor: kGreen,
+               
+              )
               );
             }),
       ),
@@ -230,16 +219,14 @@ Widget _buildInitial({
 Widget _buildContinueButton(
     {@required Stream<bool> continueStream, @required SignupBloc signupBloc}) {
   return Container(
-    height: 83,
-    width: 280,
-    padding: const EdgeInsets.only(top: 20, bottom: 6),
-    child: Theme(
-      data: ThemeData(buttonTheme: kRedButtonData),
+      height: 75.0,
+      width: 335,
+    padding: const EdgeInsets.only(top: 20.0, bottom: 6),
+ 
       child: StreamBuilder<bool>(
           stream: continueStream,
           builder: (context, snapshot) {
             return RaisedButton(
-                disabledColor: Colors.grey[300],
                 elevation: 6.0,
                 child: Text(
                   'Continue',
@@ -249,7 +236,7 @@ Widget _buildContinueButton(
                     ? () => signupBloc.add(ContinueButtonEvent())
                     : null);
           }),
-    ),
+  
   );
 }
 
