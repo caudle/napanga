@@ -23,7 +23,7 @@ class ApartmentDatabase {
         'likes': apartment.likes,
         'category': apartment.category,
         'location': apartment.location,
-        'review': apartment.review,
+        'review': apartment.review ?? 0,
         'images': apartment.images,
         'videos': apartment.videos,
         'amenities': apartment.amenities,
@@ -40,7 +40,7 @@ class ApartmentDatabase {
   //get top rated apartments
   Stream<QuerySnapshot> getTopRated() {
     return _collectionReference
-        .where('review', isGreaterThanOrEqualTo: 4.0)
+        .where('review', isGreaterThanOrEqualTo: 3.5)
         .snapshots();
   }
 
@@ -48,6 +48,13 @@ class ApartmentDatabase {
   Stream<QuerySnapshot> getCity() {
     return _collectionReference
         .where('category.city', isEqualTo: true)
+        .snapshots();
+  }
+
+  //get beach apts
+  Stream<QuerySnapshot> getBeach() {
+    return _collectionReference
+        .where('category.beach', isEqualTo: true)
         .snapshots();
   }
 

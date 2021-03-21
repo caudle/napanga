@@ -154,6 +154,8 @@ class _PriceWidgetState extends State<PriceWidget> {
                                   double.parse(rentController.value.text);
                               widget.apartment.terms =
                                   int.parse(termsController.value.text);
+                              widget.apartment.fee =
+                                  double.parse(feeController.value.text);
                               widget.apartment.date = DateTime.now();
                               widget.apartment.hostId = await bloc
                                   .getCurrentUser
@@ -207,6 +209,8 @@ class _PriceWidgetState extends State<PriceWidget> {
                                   double.parse(rentController.value.text);
                               widget.house.terms =
                                   int.parse(termsController.value.text);
+                              widget.house.fee =
+                                  double.parse(feeController.value.text);
                               widget.house.date = DateTime.now();
                               widget.house.hostId = await bloc.getCurrentUser
                                   .then((value) => value.uid);

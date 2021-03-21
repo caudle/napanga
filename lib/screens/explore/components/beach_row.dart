@@ -1,18 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:napanga/screens/explore/components/home_list.dart';
 
 import 'build.dart';
+import 'home_list.dart';
 
-class HomeRow extends StatelessWidget {
+class BeachRow extends StatelessWidget {
   final Stream<List<QuerySnapshot>> stream;
   final String loadingText;
-  final String title;
+
   final String emptyText;
 
-  HomeRow({
+  BeachRow({
     @required this.stream,
-    @required this.title,
     @required this.loadingText,
     @required this.emptyText,
   });
@@ -21,7 +20,6 @@ class HomeRow extends StatelessWidget {
     return SliverList(
       delegate: SliverChildListDelegate(
         [
-          buildRow(context, title),
           StreamBuilder<List<QuerySnapshot>>(
             stream: stream,
             builder: (context, AsyncSnapshot<List<QuerySnapshot>> snapshot) {

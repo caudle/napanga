@@ -28,6 +28,7 @@ class _DetailsState extends State<Details> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            elevation: 6,
             floating: true,
             snap: true,
             iconTheme: IconThemeData(color: kGreen),
@@ -45,6 +46,15 @@ class _DetailsState extends State<Details> {
           ),
           SliverList(
               delegate: SliverChildListDelegate([
+            //imgs
+            Container(
+              margin: EdgeInsets.only(top: 20, left: 14, right: 10),
+              //height: 300,
+              child: _buildImages(
+                  apartment: widget.apartment,
+                  house: widget.house,
+                  context: context),
+            ),
             //title
             _buildTitle(
                 apartment: widget.apartment,
@@ -333,4 +343,31 @@ Widget _buildBottom(
             'Request to meet with host',
             style: TextStyle(color: kWhite),
           )));
+}
+
+Widget _buildImages({
+  @required Apartment apartment,
+  @required House house,
+  @required BuildContext context,
+}) {
+  return GridView.count(
+      childAspectRatio: 1.5,
+      shrinkWrap: true,
+      children: house != null
+          ? _buildList(house.images)
+          : _buildList(apartment.images),
+      crossAxisCount: 2);
+}
+
+List<Widget> _buildList(List<dynamic> images) {
+  return images
+      .map((img) => Container(
+            child: Card(
+              child: Image.network(
+                img,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ))
+      .toList();
 }

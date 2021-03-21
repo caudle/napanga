@@ -32,7 +32,12 @@ class HomeList extends StatelessWidget {
             apartment = null;
             house = null;
           }
-          return HomeCard(apartment: apartment, house: house, tap: true);
+          return HomeCard(
+            apartment: apartment,
+            house: house,
+            tap: true,
+            index: index,
+          );
         });
   }
 }

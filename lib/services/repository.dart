@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:napanga/models/message.dart';
+import 'package:napanga/services/providers/network/firestore/chat_db.dart';
 import 'package:path/path.dart' as p;
 import 'package:napanga/models/apartment.dart';
 import 'package:meta/meta.dart';
@@ -20,6 +22,7 @@ class Repository {
   final ApartmentDatabase _apartmentDatabase = ApartmentDatabase();
   final HouseDatabase _houseDatabase = HouseDatabase();
   final AuthService _authService = AuthService();
+  final ChatDatabase _chatDatabase = ChatDatabase();
 
   //log out user
   Future<void> logOut() async {
@@ -95,6 +98,32 @@ class Repository {
     return CombineLatestStream.combine2<QuerySnapshot, QuerySnapshot,
             List<QuerySnapshot>>(_apartmentDatabase.getUserApts(userId),
         _houseDatabase.getUserHouses(userId), combiner);
+  }
+
+  //get top apts
+  Stream<QuerySnapshot> getTopApts() {
+    return _apartmentDatabase.getTopRated();
+  }
+
+  //get top hos
+  Stream<QuerySnapshot> getTopHouses() {
+    return _houseDatabase.getTopRated();
+  }
+
+  //get top homes
+  Stream<List<QuerySnapshot>> getTopHomes() {
+    List<QuerySnapshot> combiner(QuerySnapshot a, QuerySnapshot b) => [a, b];
+    return CombineLatestStream.combine2<QuerySnapshot, QuerySnapshot,
+            List<QuerySnapshot>>(_apartmentDatabase.getTopRated(),
+        _houseDatabase.getTopRated(), combiner);
+  }
+
+  //get beach homes
+  Stream<List<QuerySnapshot>> getBeachHomes() {
+    List<QuerySnapshot> combiner(QuerySnapshot a, QuerySnapshot b) => [a, b];
+    return CombineLatestStream.combine2<QuerySnapshot, QuerySnapshot,
+            List<QuerySnapshot>>(
+        _apartmentDatabase.getBeach(), _houseDatabase.getBeach(), combiner);
   }
 
   //get image
@@ -221,5 +250,33 @@ class Repository {
   //delete saved
   Future<void> deleteSaved({@required String userId, @required String homeId}) {
     return _userDatabase.deleteSaved(userId: userId, homeId: homeId);
+  }
+
+  //create chatroom
+  Future createChatRoom(String senderId, String receiverId) async {
+    //check if chatroom id exists
+    final docSnapOne =
+        await _chatDatabase.getChatRoomDoc(senderId + receiverId);
+    final docSnapTwo =
+        await _chatDatabase.getChatRoomDoc(receiverId + senderId);
+    if (!(docSnapOne.exists || docSnapTwo.exists)) {
+      return await _chatDatabase.createChatRoom(senderId, receiverId);
+    }
+  }
+
+  //get chatroom docs
+  Stream<QuerySnapshot> getChatRooms() {
+    final String userId = _authService.getCurrentUser().uid;
+    return _chatDatabase.getChatRooms(userId);
+  }
+
+  //create message collection
+  Future createMessage(String docId, Message message) async {
+    return await _chatDatabase.createMessage(docId, message);
+  }
+
+  //get message
+  Stream<QuerySnapshot> getMessages(String docId) {
+    return _chatDatabase.getMessages(docId);
   }
 }

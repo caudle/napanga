@@ -22,6 +22,8 @@ class ExploreBloc extends Bloc<ExploreEvent, ExploreState> {
   Future<void> get logOut => _repository.logOut();
 
   Stream<List<QuerySnapshot>> get cityHomes => _repository.getCityHomes();
+  Stream<List<QuerySnapshot>> get topHomes => _repository.getTopHomes();
+  Stream<List<QuerySnapshot>> get beachHomes => _repository.getBeachHomes();
   Future<UserModel> get getCurrentUser => _repository.getCurrentUser();
   Stream<UserModel> get getCurrentUserStream =>
       _repository.getCurrentUserStream();
@@ -30,6 +32,8 @@ class ExploreBloc extends Bloc<ExploreEvent, ExploreState> {
       _repository.getAptReviews(uid);
   Stream<QuerySnapshot> getHouseReviews(String uid) =>
       _repository.getHouseReviews(uid);
+  Stream<QuerySnapshot> getHouses() => _repository.getAllHouses();
+  Stream<QuerySnapshot> getApts() => _repository.getAllApts();
 
   Future<File> chooseImage() async {
     try {

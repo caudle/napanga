@@ -50,7 +50,7 @@ class House {
         description = houseDocument['description'],
         bedrooms = houseDocument['bedrooms'],
         bathrooms = houseDocument['bathrooms'],
-        price = houseDocument['price'],
+        price = double.parse(houseDocument['price'].toString()),
         fee = double.parse(
           houseDocument['fee'].toString(),
         ),
@@ -61,7 +61,7 @@ class House {
         views = houseDocument['views'],
         category = houseDocument['category'],
         location = houseDocument['location'],
-        review = houseDocument['review'],
+        review = double.parse(houseDocument['review'].toString()),
         images = houseDocument['images'],
         videos = houseDocument['videos'],
         amenities = houseDocument['amenities'],

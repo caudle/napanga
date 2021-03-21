@@ -49,7 +49,7 @@ class Listing extends StatelessWidget {
       floatingActionButton: buildFloating(context),
       bottomNavigationBar:
           HostBottomNav(currentIndex: index, newContext: context),
-      drawer: CustomDrawer(exploreBloc: ExploreBloc()),
+      drawer: CustomDrawer(),
     );
   }
 }

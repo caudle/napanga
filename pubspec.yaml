@@ -32,8 +32,8 @@ dependencies:
   video_player: ^1.0.1
   firebase_storage: ^7.0.0
   firebase_core: ^0.7.0
-  flutter_bloc: ^6.1.1
-  equatable: ^1.2.5
+  flutter_bloc: ^7.0.0
+  equatable: ^2.0.0
   image_picker: ^0.6.7+22
   path: ^1.7.0
   uuid: ^2.2.1

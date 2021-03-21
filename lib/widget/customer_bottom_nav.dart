@@ -10,7 +10,7 @@ class CustomerBottomNav extends StatefulWidget {
 }
 
 class _CustomerBottomNavState extends State<CustomerBottomNav> {
-  List _routes = <String>['/', '/saved', '/inbox'];
+  List _routes = <String>['/', '/saved', '/profile'];
 
   //change index
   void _changeIndex(int index) {
@@ -37,8 +37,8 @@ class _CustomerBottomNavState extends State<CustomerBottomNav> {
           label: 'Saved',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.inbox),
-          label: 'Inbox',
+          icon: Icon(Icons.perm_identity),
+          label: 'Profile',
         ),
       ],
       currentIndex: widget.currentIndex,

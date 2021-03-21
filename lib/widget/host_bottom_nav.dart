@@ -11,7 +11,7 @@ class HostBottomNav extends StatefulWidget {
 }
 
 class _HostBottomNavState extends State<HostBottomNav> {
-  List _routes = <String>['/listing', '/stats', '/inbox'];
+  List _routes = <String>['/listing', '/stats', '/profile'];
 
   //change index
   void _changeIndex(int index) {
@@ -36,8 +36,8 @@ class _HostBottomNavState extends State<HostBottomNav> {
           label: 'stats',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.inbox),
-          label: 'Inbox',
+          icon: Icon(Icons.perm_identity),
+          label: 'Profile',
         ),
       ],
       currentIndex: widget.currentIndex,

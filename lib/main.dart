@@ -10,6 +10,5 @@ void main() async {
   await Firebase.initializeApp();
   AuthService authService = AuthService();
   UserModel userModel = await authService.user.first;
-  print(userModel);
   runApp(NapangaApp(userModel));
 }

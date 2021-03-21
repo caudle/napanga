@@ -81,7 +81,9 @@ Widget _buildRating({Apartment apartment, House house}) {
               Icons.star,
               color: kPink,
             ),
-            Text(house != null ? house.review ?? '0' : apartment.review ?? '0'),
+            Text(house != null
+                ? _checkNull(house.review)
+                : _checkNull(apartment.review)),
           ],
         ),
         Text('Rating')
@@ -118,7 +120,9 @@ Widget _buildLikes({Apartment apartment, House house, Repository repo}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Text(house != null ? house.likes ?? '0' : apartment.likes ?? '0'),
+      Text(house != null
+          ? _checkNull(house.likes)
+          : _checkNull(apartment.likes)),
       Text('Likes')
     ],
   );
@@ -131,9 +135,15 @@ Widget _buildViews({Apartment apartment, House house}) {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(house != null ? house.views ?? '0' : apartment.views ?? '0'),
+        Text(house != null
+            ? _checkNull(house.views)
+            : _checkNull(apartment.views)),
         Text('views')
       ],
     ),
   );
+}
+
+String _checkNull(dynamic value) {
+  return value == null ? '0' : value.toString();
 }

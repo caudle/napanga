@@ -53,7 +53,7 @@ class Apartment {
         bedrooms = apartmentDocument['bedrooms'],
         bathrooms = apartmentDocument['bathrooms'],
         building = apartmentDocument['building'],
-        price = apartmentDocument['price'],
+        price = double.parse(apartmentDocument['price'].toString()),
         fee = double.parse(
           apartmentDocument['fee'].toString(),
         ),
@@ -64,7 +64,7 @@ class Apartment {
         views = apartmentDocument['views'],
         category = apartmentDocument['category'],
         location = apartmentDocument['location'],
-        review = apartmentDocument['review'],
+        review = double.parse(apartmentDocument['review'].toString()),
         images = apartmentDocument['images'],
         videos = apartmentDocument['videos'],
         amenities = apartmentDocument['amenities'],

@@ -6,6 +6,8 @@ import 'package:napanga/screens/details/details.dart';
 import 'package:napanga/screens/explore/explore.dart';
 import 'package:napanga/screens/listing/listing.dart';
 import 'package:napanga/screens/logIn/log_in.dart';
+import 'package:napanga/screens/messages/messages.dart';
+import 'package:napanga/screens/profile/profile.dart';
 import 'package:napanga/screens/saved/saved.dart';
 import 'package:napanga/screens/signUp/sign_up.dart';
 import 'package:napanga/screens/stats/stats.dart';
@@ -72,6 +74,15 @@ Route _generateRoute(RouteSettings settings) {
     case '/stats':
       return MaterialPageRoute(builder: (context) {
         return Stats();
+      });
+    case '/profile':
+      return MaterialPageRoute(builder: (context) {
+        return BlocProvider(
+            create: (context) => ExploreBloc(), child: Profile());
+      });
+    case '/messages':
+      return MaterialPageRoute(builder: (context) {
+        return Messages();
       });
     default:
       return _errorRoute();

@@ -3,15 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:napanga/core/constants.dart';
 import 'package:napanga/models/apartment.dart';
 import 'package:napanga/models/house.dart';
-import 'package:napanga/services/auth.dart';
 import 'package:napanga/services/repository.dart';
 
 class HomeCard extends StatefulWidget {
   final Apartment apartment;
   final House house;
   final bool tap;
+  final int index;
   HomeCard(
-      {@required this.apartment, @required this.house, @required this.tap});
+      {@required this.apartment,
+      @required this.house,
+      @required this.tap,
+      @required this.index});
 
   @override
   _HomeCardState createState() => _HomeCardState();
@@ -54,7 +57,8 @@ class _HomeCardState extends State<HomeCard> {
               : null,
         ),
       ),
-      margin: EdgeInsets.only(top: 3, bottom: 5, left: 0, right: 10),
+      margin: EdgeInsets.only(
+          top: 3, bottom: 5, left: widget.index == 0 ? 18 : 0, right: 10),
     );
   }
 }
