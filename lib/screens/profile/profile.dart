@@ -10,16 +10,37 @@ import 'package:napanga/services/blocs/explore/explore_bloc.dart';
 import 'package:napanga/widget/customer_bottom_nav.dart';
 import 'package:napanga/widget/host_bottom_nav.dart';
 import 'package:napanga/widget/loading_indicator.dart';
+import 'package:package_info/package_info.dart';
 
 class Profile extends StatefulWidget {
   @override
   _ProfileState createState() => _ProfileState();
 }
 class _ProfileState extends State<Profile> {
-  @override
+
+  PackageInfo _packageInfo = PackageInfo(
+    appName: 'Unknown',
+    packageName: 'Unknown',
+    version: 'Unknown',
+    buildNumber: 'Unknown',
+  );
+
 
     final int index = 2;
   File imageFile;
+
+   @override
+  void initState() {
+    super.initState();
+    _initPackageInfo();
+  }
+
+  Future<void> _initPackageInfo() async {
+    final PackageInfo info = await PackageInfo.fromPlatform();
+    setState(() {
+      _packageInfo = info;
+    });
+  }
 
   Future upload(ExploreBloc bloc, String uid) async {
     var file = await bloc.chooseImage();
@@ -34,7 +55,7 @@ class _ProfileState extends State<Profile> {
     final exploreBloc = BlocProvider.of<ExploreBloc>(context);
              return Scaffold(
                  body: Container(
-                   color: AppColor.constColorWht,
+                 
                    child: ListView(
                      children: [
                        Padding(
@@ -45,31 +66,31 @@ class _ProfileState extends State<Profile> {
                     boxShadow: <BoxShadow>[
                       BoxShadow(
                           color: Colors.black54,
-                          blurRadius: 15.0,
+                          blurRadius: 5.0,
                           offset: Offset(0.0, 0.75))
                     ],
                     color: AppColor.dPrimaryTextColor,
                   ),
-                  child: Row(
-                    children: <Widget>[
-                      StreamBuilder<UserModel>(
+                  child: StreamBuilder<UserModel>(
                   stream: exploreBloc.getCurrentUserStream,
-                  builder: (context,snapshot){
+                  builder: (context, snapshot) {
                     if (snapshot.hasData)
-                      return Container(
+                  
+                   return Row(
+                    children: <Widget>[
+                      
+                      Container(
                         child: CircleAvatar(
                           backgroundImage: AssetImage('images/masenu.jpg'),
                         ),
-                        height: 80,
-                        width: 80,
-                        margin: EdgeInsets.only(left: 30, top: 30, right: 7),
+                        height: 90,
+                        width:90,
+                        margin: EdgeInsets.only(left: 20, top: 30, right: 7),
                         padding: EdgeInsets.all(2),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: AppColor.blueMain,
                         ),
-                      );
-                      }
                       ),
                       Container(
                         margin: EdgeInsets.only(top: 40),
@@ -81,7 +102,7 @@ class _ProfileState extends State<Profile> {
                                 left: 10,
                               ),
                               child: Text(
-                                'Masenu Msuya',
+                                snapshot.data.name,
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
@@ -99,7 +120,7 @@ class _ProfileState extends State<Profile> {
                                   'View',
                                   style: TextStyle(
                                     fontSize: 18,
-                                    fontWeight: FontWeight.w400,
+                                    fontWeight: FontWeight.w300,
                                     color: AppColor.blueMain,
                                   ),
                                 ),
@@ -109,11 +130,12 @@ class _ProfileState extends State<Profile> {
                         ),
                       ),
                     ],
-                  ),
+                  );
+                  },),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+                padding: EdgeInsets.only(top: 10, left: 15, right: 10),
                 child: Container(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,7 +156,7 @@ class _ProfileState extends State<Profile> {
                               FontAwesomeIcons.userCircle,
                               0.9,
                               width,
-                              FontWeight.w400,
+                              FontWeight.w300,
                               18,
                             ),
                             buildContainerMenu(
@@ -142,23 +164,23 @@ class _ProfileState extends State<Profile> {
                               FontAwesomeIcons.slidersH,
                               0.9,
                               width,
-                              FontWeight.w400,
+                              FontWeight.w300,
                               18,
                             ),
                             /*buildContainerMenu(
                               'Subscription',
                               FontAwesomeIcons.moneyBill,
-                              0.0,
+                              0.9,
                               width,
-                              FontWeight.w400,
+                              FontWeight.w300,
                               18,
                             ),*/
                               buildContainerMenu(
                               'Notifications',
                               FontAwesomeIcons.bell,
-                              0.0,
+                                 0.9,
                               width,
-                              FontWeight.w400,
+                              FontWeight.w300,
                               18,
                             ),
                           ],
@@ -179,14 +201,14 @@ class _ProfileState extends State<Profile> {
                                 FontAwesomeIcons.phone,
                                 0.9,
                                 width,
-                                FontWeight.w400,
+                                FontWeight.w300,
                                 18),
                             buildContainerMenu(
                               'Get help',
                               FontAwesomeIcons.questionCircle,
                               0.9,
                               width,
-                              FontWeight.w400,
+                              FontWeight.w300,
                               18,
                             ),
                             buildContainerMenu(
@@ -194,21 +216,21 @@ class _ProfileState extends State<Profile> {
                                 FontAwesomeIcons.book,
                                 0.9,
                                 width,
-                                FontWeight.w400,
+                                FontWeight.w300,
                                 18),
                             buildContainerMenu(
                                 'Community Center',
                                 FontAwesomeIcons.bullhorn,
                                 0.9,
                                 width,
-                                FontWeight.w400,
+                                FontWeight.w300,
                                 18),
                             buildContainerMenu(
                               'Our Website',
                               FontAwesomeIcons.internetExplorer,
-                              0.0,
+                              0.9,
                               width,
-                              FontWeight.w400,
+                              FontWeight.w300,
                               18,
                             ),
                           ],
@@ -229,15 +251,15 @@ class _ProfileState extends State<Profile> {
                               FontAwesomeIcons.share,
                               0.9,
                               width,
-                              FontWeight.w400,
+                              FontWeight.w300,
                               18,
                             ),
                             buildContainerMenu(
                               'Rate us',
                               FontAwesomeIcons.star,
-                              0.0,
+                              0.9,
                               width,
-                              FontWeight.w400,
+                              FontWeight.w300,
                               18,
                             ),
                           ],
@@ -258,17 +280,37 @@ class _ProfileState extends State<Profile> {
                               FontAwesomeIcons.handshake,
                               0.9,
                               width,
-                              FontWeight.w400,
+                              FontWeight.w300,
                               18,
                             ),
                             buildContainerMenu(
                               'Privacy Policies',
                               FontAwesomeIcons.userShield,
-                              0,
+                              0.9,
                               width,
-                              FontWeight.w400,
+                              FontWeight.w300,
                               18,
                             ),
+                                      GestureDetector(
+                onTap: () async {
+                  
+                },
+                   child: Container(
+                  padding: EdgeInsets.only(top: 4, bottom: 7,),
+                  margin: EdgeInsets.only( bottom: 10,),
+                  decoration: BoxDecoration(
+                    color: AppColor.dPrimaryTextColor,
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: buildContainerMenu(
+                      'Logout',
+                      FontAwesomeIcons.signOutAlt,
+                      0.9,
+                      width,
+                      FontWeight.w300,
+                      18),
+                ),
+              ),
                           ],
                         ),
                       ),
@@ -276,33 +318,12 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
               ),
-              GestureDetector(
-                onTap: () async {
-                  
-                },
-                child: Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Container(
-                    padding: EdgeInsets.only(top: 7, bottom: 7, left: 10),
-                    margin: EdgeInsets.only(top: 10, bottom: 10),
-                    decoration: BoxDecoration(
-                      color: AppColor.dPrimaryTextColor,
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: buildContainerMenu(
-                        'Logout',
-                        FontAwesomeIcons.signOutAlt,
-                        0.0,
-                        width,
-                        FontWeight.bold,
-                        18),
-                  ),
-                ),
-              ),
+    
               Padding(
                 padding: EdgeInsets.all(10),
-                child: Text('Version'),
+                child:  _infoTile('Version', _packageInfo.version),
               ),
+              
             ],
           ),
         ),
@@ -321,6 +342,25 @@ class _ProfileState extends State<Profile> {
      
   }
 }
+
+
+  Widget _infoTile(String title, String subtitle) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+     children: [
+       Text(title, style: GoogleFonts.playfairDisplay(
+          textStyle: TextStyle(
+              fontWeight: FontWeight.w400, fontSize: 20, color: Colors.grey),
+        ),),
+        SizedBox(width: 15,),
+       Text(subtitle,style: GoogleFonts.playfairDisplay(
+          textStyle: TextStyle(
+              fontWeight: FontWeight.w400, fontSize: 20, color: Colors.grey),
+        ),),
+     ],
+    );
+  }
 
   Widget buildTextHeader(String title) {
     return Padding(
@@ -381,5 +421,3 @@ class _ProfileState extends State<Profile> {
       ),
     );
   }
-
-

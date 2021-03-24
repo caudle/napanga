@@ -17,6 +17,7 @@ static const dSecondaryTextColor = const Color(0xFF8899a6);
 static const blueMain = const Color(0xFF42526C);
  static const kPink = const Color(0xFFFC5185);
  static const btonColor = const Color(0xFF1DB38C);
+ static const textColor = const Color(0xFF67717d);
 //light theme
  static const lightPrimaryTextColor = const Color(0xFF222222);
  static const lightSecondaryTextColor =const Color(0xFF15202B);

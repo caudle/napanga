@@ -15,6 +15,8 @@ class _PersonInfoState extends State<PersonInfo> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _usernameController = TextEditingController();
 
+   
+
   @override
   void initState() {
     widget.bloc.getCurrentUserStream.listen((user) {
@@ -23,8 +25,11 @@ class _PersonInfoState extends State<PersonInfo> {
       _emailController.text = user.email;
       _usernameController.text = user.username;
     });
+     
     super.initState();
+ 
   }
+
 
   @override
   void dispose() {
