@@ -5,13 +5,9 @@ import 'package:napanga/models/user.dart';
 import 'package:napanga/screens/details/details.dart';
 import 'package:napanga/screens/explore/explore.dart';
 import 'package:napanga/screens/listing/listing.dart';
-<<<<<<< HEAD
-import 'package:napanga/screens/logIn/log_in.dart';
+import 'package:napanga/screens/authentication/logIn/log_in.dart';
 import 'package:napanga/screens/messages/messages.dart';
 import 'package:napanga/screens/profile/profile.dart';
-=======
-import 'package:napanga/screens/authentication/logIn/log_in.dart';
->>>>>>> 0227473ece7eac9397a94b074b0d54e2ec4fcc7d
 import 'package:napanga/screens/saved/saved.dart';
 import 'package:napanga/screens/authentication/signUp/sign_up.dart';
 import 'package:napanga/screens/stats/stats.dart';

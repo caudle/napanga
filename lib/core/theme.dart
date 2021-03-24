@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 
 class AppColor{
   //dark theme
+ static Color constColorPrimary = Color(0xfffdfffc);
+static Color constColorSecondary = Color(0xff011627);
+static Color constColorMainButton = Color(0xff2ec4b6);
+static Color constColorRed = Color(0xffe71d36);
+static Color constColorOrange = Color(0xffff9f1c);
+static Color constColorWht = Color(0xffedeefc);
+static Color constColorFont = Color(0xffA9A9A9);
  static const dBackgroundColor = const Color(0xFF15202B);
  static const dCardColor = const Color(0xFF192734);
  static const dHoverColor = const Color(0xFF22303C);

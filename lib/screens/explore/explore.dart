@@ -1,20 +1,15 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-<<<<<<< HEAD
-import 'package:napanga/models/user.dart';
+
 import 'package:napanga/screens/explore/components/beach_row.dart';
-=======
-import 'package:napanga/core/constants.dart';
-import 'package:napanga/core/theme.dart';
->>>>>>> 0227473ece7eac9397a94b074b0d54e2ec4fcc7d
 import 'package:napanga/screens/explore/components/home_row.dart';
 import 'package:napanga/services/blocs/explore/explore_bloc.dart';
 import 'package:napanga/widget/custom_drawer.dart';
 import 'package:napanga/widget/customer_bottom_nav.dart';
 import 'components/build.dart';
 import 'components/category.dart';
-import 'components/home_list.dart';
+
 
 class Explore extends StatelessWidget {
   final int _index = 0;
