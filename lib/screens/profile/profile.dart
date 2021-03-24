@@ -81,7 +81,7 @@ class _ProfileState extends State<Profile> {
                       
                       Container(
                         child: CircleAvatar(
-                          backgroundImage: AssetImage('images/masenu.jpg'),
+                          backgroundImage: NetworkImage(snapshot.data.dp),
                         ),
                         height: 90,
                         width:90,
@@ -104,7 +104,7 @@ class _ProfileState extends State<Profile> {
                               child: Text(
                                 snapshot.data.name,
                                 style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 25,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -293,7 +293,9 @@ class _ProfileState extends State<Profile> {
                             ),
                                       GestureDetector(
                 onTap: () async {
-                  
+                  exploreBloc.logOut.then((value) =>
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, 'login', (route) => false));
                 },
                    child: Container(
                   padding: EdgeInsets.only(top: 4, bottom: 7,),
