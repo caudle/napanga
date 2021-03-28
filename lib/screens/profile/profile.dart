@@ -204,14 +204,6 @@ class _ProfileState extends State<Profile> {
                                 FontWeight.w300,
                                 18),
                             buildContainerMenu(
-                              'Get help',
-                              FontAwesomeIcons.questionCircle,
-                              0.9,
-                              width,
-                              FontWeight.w300,
-                              18,
-                            ),
-                            buildContainerMenu(
                                 'Resource Center',
                                 FontAwesomeIcons.book,
                                 0.9,

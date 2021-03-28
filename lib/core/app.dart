@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napanga/core/theme.dart';
 import 'package:napanga/models/user.dart';
 import 'package:napanga/screens/details/details.dart';
+import 'package:napanga/screens/explore/Filter/filter.dart';
 import 'package:napanga/screens/explore/explore.dart';
 import 'package:napanga/screens/listing/listing.dart';
 import 'package:napanga/screens/authentication/logIn/log_in.dart';
@@ -83,6 +84,10 @@ Route _generateRoute(RouteSettings settings) {
     case '/messages':
       return MaterialPageRoute(builder: (context) {
         return Messages();
+      });
+    case '/filter':
+      return MaterialPageRoute(builder: (context) {
+        return Filter();
       });
     default:
       return _errorRoute();

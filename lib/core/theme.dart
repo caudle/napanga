@@ -1,138 +1,160 @@
 import 'package:flutter/material.dart';
 
-class AppColor{
+class AppColor {
   //dark theme
- static Color constColorPrimary = Color(0xfffdfffc);
-static Color constColorSecondary = Color(0xff011627);
-static Color constColorMainButton = Color(0xff2ec4b6);
-static Color constColorRed = Color(0xffe71d36);
-static Color constColorOrange = Color(0xffff9f1c);
-static Color constColorWht = Color(0xffedeefc);
-static Color constColorFont = Color(0xffA9A9A9);
- static const dBackgroundColor = const Color(0xFF15202B);
- static const dCardColor = const Color(0xFF192734);
- static const dHoverColor = const Color(0xFF22303C);
- static const dPrimaryTextColor = const Color(0xFFFFFFFF);
-static const dSecondaryTextColor = const Color(0xFF8899a6);
-static const blueMain = const Color(0xFF42526C);
- static const kPink = const Color(0xFFFC5185);
- static const btonColor = const Color(0xFF1DB38C);
- static const textColor = const Color(0xFF67717d);
-//light theme
- static const lightPrimaryTextColor = const Color(0xFF222222);
- static const lightSecondaryTextColor =const Color(0xFF15202B);
- 
+  static Color constColorPrimary = Color(0xfffdfffc);
+  static Color constColorSecondary = Color(0xff011627);
+  static Color constColorMainButton = Color(0xff2ec4b6);
+  static Color constColorRed = Color(0xffe71d36);
+  static Color constColorOrange = Color(0xffff9f1c);
+  static Color constColorWht = Color(0xffedeefc);
+  static Color constColorFont = Color(0xffA9A9A9);
+  static const dBackgroundColor = const Color(0xFF15202B);
+  static const dCardColor = const Color(0xFF192734);
+  static const dHoverColor = const Color(0xFF22303C);
+  static const dPrimaryTextColor = const Color(0xFFFFFFFF);
+  static const dSecondaryTextColor = const Color(0xFF8899a6);
+  static const blueMain = const Color(0xFF42526C);
+  static const kPink = const Color(0xFFFC5185);
+  static const btonColor = const Color(0xFF1DB38C);
+  static const textColor = const Color(0xFF67717d);
 
+//light theme
+  static const lightPrimaryTextColor = const Color(0xFF222222);
+  static const lightSecondaryTextColor = const Color(0xFF15202B);
 }
 
 ThemeData _themeData = ThemeData.light();
 
-ThemeData lightTheme(BuildContext context){
-
+ThemeData lightTheme(BuildContext context) {
   final ThemeData lightTheme = ThemeData.light().copyWith(
     scaffoldBackgroundColor: AppColor.dPrimaryTextColor,
-     textTheme: ThemeData.light().textTheme.copyWith(
-      bodyText1: TextStyle(color:AppColor.lightSecondaryTextColor,),
-      bodyText2: TextStyle(color:AppColor.lightSecondaryTextColor,),
-      headline1: TextStyle(color:AppColor.lightPrimaryTextColor,),
-      headline2: TextStyle(color:AppColor.lightPrimaryTextColor,),
-      headline3: TextStyle(color:AppColor.lightPrimaryTextColor,),
-      headline4: TextStyle(color:AppColor.lightPrimaryTextColor,),
-      headline5: TextStyle(color:AppColor.lightPrimaryTextColor,),
-      headline6: TextStyle(color:AppColor.lightPrimaryTextColor,),
-      
-    ),
-
-    iconTheme: IconThemeData(color:AppColor.lightSecondaryTextColor,size: 20.0),
+    textTheme: ThemeData.light().textTheme.copyWith(
+          bodyText1: TextStyle(
+            color: AppColor.lightSecondaryTextColor,
+          ),
+          bodyText2: TextStyle(
+              color: AppColor.lightSecondaryTextColor,
+              fontSize: 14,
+              fontWeight: FontWeight.w400),
+          headline1: TextStyle(
+            color: AppColor.lightPrimaryTextColor,
+          ),
+          headline2: TextStyle(
+            color: AppColor.lightPrimaryTextColor,
+          ),
+          headline3: TextStyle(
+              color: AppColor.constColorWht,
+              fontSize: 15,
+              fontWeight: FontWeight.w500),
+          headline4: TextStyle(
+            color: AppColor.blueMain,
+            fontSize: 17,
+            fontWeight: FontWeight.w700,
+          ),
+          headline5: TextStyle(
+              color: AppColor.blueMain,
+              fontWeight: FontWeight.w500,
+              fontSize: 15),
+          headline6: TextStyle(
+            color: AppColor.lightPrimaryTextColor,
+          ),
+        ),
+    iconTheme: IconThemeData(color: AppColor.blueMain, size: 30.0),
     hintColor: AppColor.lightSecondaryTextColor,
     disabledColor: AppColor.blueMain,
     highlightColor: AppColor.blueMain,
     accentTextTheme: TextTheme(
-      button: TextStyle(color: AppColor.dPrimaryTextColor,
+      button: TextStyle(
+        color: AppColor.dPrimaryTextColor,
       ),
     ),
-    textButtonTheme: TextButtonThemeData(
-     
-    ),
-    hoverColor:  AppColor.blueMain,
-    focusColor:  AppColor.blueMain,
+    textButtonTheme: TextButtonThemeData(),
+    hoverColor: AppColor.blueMain,
+    focusColor: AppColor.blueMain,
     accentColor: AppColor.dPrimaryTextColor,
     primaryColor: AppColor.dHoverColor,
-    primaryIconTheme:IconThemeData(color:AppColor.dBackgroundColor),
+    primaryIconTheme: IconThemeData(color: AppColor.dBackgroundColor),
     buttonTheme: ButtonThemeData(
-      buttonColor: AppColor.blueMain,
-      textTheme: ButtonTextTheme.accent,
-      disabledColor: AppColor.dSecondaryTextColor,
-      shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0),)
-      
-    ),
+        buttonColor: AppColor.blueMain,
+        textTheme: ButtonTextTheme.accent,
+        disabledColor: AppColor.dSecondaryTextColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(6.0),
+        )),
     inputDecorationTheme: InputDecorationTheme(
-    fillColor: AppColor.dPrimaryTextColor,
-    filled: true,
-    focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(6.0),
-      borderSide: const BorderSide(color: AppColor.blueMain,width: 0.5),
+        fillColor: AppColor.dPrimaryTextColor,
+        filled: true,
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(6.0),
+          borderSide: const BorderSide(color: AppColor.blueMain, width: 0.5),
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(6.0),
+          borderSide: const BorderSide(color: AppColor.blueMain, width: 0.5),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(6.0),
+          borderSide: const BorderSide(color: AppColor.blueMain, width: 0.5),
+        ),
+        errorBorder: InputBorder.none,
+        disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(6.0),
+          borderSide: const BorderSide(color: AppColor.blueMain, width: 0.5),
+        ),
+        isDense: true,
+        contentPadding: EdgeInsets.all(18.0)),
+    sliderTheme: SliderThemeData(
+      trackHeight: 12,
+      activeTrackColor: AppColor.blueMain,
+      thumbColor: AppColor.blueMain,
     ),
-    border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(6.0),
-      borderSide: const BorderSide(color: AppColor.blueMain,width: 0.5),
-    ),
-    enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(6.0),
-      borderSide: const BorderSide(color: AppColor.blueMain,width: 0.5),
-
-    ),
-
-  
-    errorBorder: InputBorder.none,
-    disabledBorder:OutlineInputBorder(
-      borderRadius: BorderRadius.circular(6.0),
-      borderSide: const BorderSide(color: AppColor.blueMain,width: 0.5),
-
-    ),
-    isDense: true,
-    contentPadding: EdgeInsets.all(18.0)
-    ),
-    
     appBarTheme: AppBarTheme(
-      elevation: 5.0,
+      elevation: 0.5,
       color: AppColor.dPrimaryTextColor,
-      
     ),
   );
 
   return lightTheme;
-
 }
 
-ThemeData darkTheme(BuildContext context){
-  final ThemeData darkTheme =ThemeData.dark().copyWith(
+ThemeData darkTheme(BuildContext context) {
+  final ThemeData darkTheme = ThemeData.dark().copyWith(
     primaryColor: AppColor.dCardColor,
     highlightColor: AppColor.dHoverColor,
     scaffoldBackgroundColor: AppColor.dBackgroundColor,
     textTheme: ThemeData.dark().textTheme.copyWith(
-      bodyText1: TextStyle(color:AppColor.dSecondaryTextColor,),
-      bodyText2: TextStyle(color:AppColor.dSecondaryTextColor,),
-      headline1: TextStyle(color:AppColor.dPrimaryTextColor,),
-      headline2: TextStyle(color:AppColor.dPrimaryTextColor,),
-      headline3: TextStyle(color:AppColor.dPrimaryTextColor,),
-      headline4: TextStyle(color:AppColor.dPrimaryTextColor,),
-      headline5: TextStyle(color:AppColor.dPrimaryTextColor,),
-      headline6: TextStyle(color:AppColor.dPrimaryTextColor,),
-    ),
-    iconTheme: IconThemeData(color:AppColor.dPrimaryTextColor,size: 20.0),
+          bodyText1: TextStyle(
+            color: AppColor.dSecondaryTextColor,
+          ),
+          bodyText2:
+              TextStyle(color: AppColor.dSecondaryTextColor, fontSize: 14),
+          headline1: TextStyle(
+            color: AppColor.dPrimaryTextColor,
+          ),
+          headline2: TextStyle(
+            color: AppColor.dPrimaryTextColor,
+          ),
+          headline3: TextStyle(
+            color: AppColor.dPrimaryTextColor,
+          ),
+          headline4: TextStyle(
+            color: AppColor.dPrimaryTextColor,
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
+          ),
+          headline5: TextStyle(
+            color: AppColor.dPrimaryTextColor,
+          ),
+          headline6: TextStyle(color: AppColor.dPrimaryTextColor, fontSize: 10),
+        ),
+    iconTheme: IconThemeData(color: AppColor.dPrimaryTextColor, size: 20.0),
     focusColor: AppColor.dCardColor,
     hoverColor: AppColor.dHoverColor,
     hintColor: AppColor.dSecondaryTextColor,
     disabledColor: AppColor.dPrimaryTextColor,
-
-
-    
     cardColor: AppColor.dCardColor,
     accentColor: AppColor.dPrimaryTextColor,
   );
-return darkTheme;
+  return darkTheme;
 }
-
-
-
